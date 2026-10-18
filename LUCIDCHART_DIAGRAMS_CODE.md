@@ -225,42 +225,42 @@ sequenceDiagram
     rect rgb(240, 253, 244)
         Note over Customer, Gateway: PART 1: COMPLETE SUCCESS PATH (Atomic Concurrency-Safe Checkout)
 
-        Customer->>+API: POST /api/cart/add/ (product_id: 1, quantity: 2)
-        API->>+DB: SELECT * FROM products_product WHERE id = 1
-        DB-->>-API: Product Found (stock = 5)
-        API->>+DB: INSERT or UPDATE cart_cartitem (qty = 2)
-        DB-->>-API: Item Persisted
-        API-->>-Customer: HTTP 200 OK (Cart Updated)
+        Customer->>API: POST /api/cart/add/ (product_id: 1, quantity: 2)
+        API->>DB: SELECT * FROM products_product WHERE id = 1
+        DB-->>API: Product Found (stock = 5)
+        API->>DB: INSERT or UPDATE cart_cartitem (qty = 2)
+        DB-->>API: Item Persisted
+        API-->>Customer: HTTP 200 OK (Cart Updated)
 
-        Customer->>+API: POST /api/cart/checkout/ (tok_success, IDEM-ABC123XYZ)
+        Customer->>API: POST /api/cart/checkout/ (tok_success, IDEM-ABC123XYZ)
         
         Note over API, DB: BEGIN transaction.atomic()
-        API->>+DB: SELECT * FROM cart_cartitem WHERE cart_user_id = user.id
-        DB-->>-API: Return Cart Items (product_id: 1, qty: 2)
+        API->>DB: SELECT * FROM cart_cartitem WHERE cart_user_id = user.id
+        DB-->>API: Return Cart Items (product_id: 1, qty: 2)
         
         Note over API, DB: Step 2: Pessimistic Row Lock in Ascending Product ID Order
-        API->>+DB: SELECT * FROM products_product WHERE id IN (1) ORDER BY id ASC FOR UPDATE
-        DB-->>-API: Locked Product Record (stock = 5)
+        API->>DB: SELECT * FROM products_product WHERE id IN (1) ORDER BY id ASC FOR UPDATE
+        DB-->>API: Locked Product Record (stock = 5)
         
         Note over API: Step 3: Validate Stock (5 >= 2 passed) and Calculate Total ($1,998.00)
-        API->>+Gateway: process_payment(amount = 1998.00, token = tok_success, key = IDEM-ABC123XYZ)
-        Gateway-->>-API: PaymentTransaction(status = success, id = 88)
+        API->>Gateway: process_payment(amount = 1998.00, token = tok_success, key = IDEM-ABC123XYZ)
+        Gateway-->>API: PaymentTransaction(status = success, id = 88)
         
         Note over API, DB: Step 4: Decrement Stock Safely
-        API->>+DB: UPDATE products_product SET stock = stock - 2 WHERE id = 1
-        DB-->>-API: Row Updated (Stock becomes 3)
+        API->>DB: UPDATE products_product SET stock = stock - 2 WHERE id = 1
+        DB-->>API: Row Updated (Stock becomes 3)
         
         Note over API, DB: Step 5: Create Order and Freeze Line Item Prices
-        API->>+DB: INSERT INTO orders_order (order_number = ORD-TALHA-001, total = 1998.00, status = paid)
-        DB-->>-API: Order Created (id = 101)
-        API->>+DB: INSERT INTO orders_orderitem (order_id = 101, unit_price = 999.00, qty = 2, subtotal = 1998.00)
-        DB-->>-API: OrderItem Persisted (Price Snapshot Frozen)
+        API->>DB: INSERT INTO orders_order (order_number = ORD-TALHA-001, total = 1998.00, status = paid)
+        DB-->>API: Order Created (id = 101)
+        API->>DB: INSERT INTO orders_orderitem (order_id = 101, unit_price = 999.00, qty = 2, subtotal = 1998.00)
+        DB-->>API: OrderItem Persisted (Price Snapshot Frozen)
         
-        API->>+DB: DELETE FROM cart_cartitem WHERE cart_id = user_cart_id
-        DB-->>-API: Cart Cleared
+        API->>DB: DELETE FROM cart_cartitem WHERE cart_id = user_cart_id
+        DB-->>API: Cart Cleared
         Note over API, DB: COMMIT transaction.atomic()
         
-        API-->>-Customer: HTTP 201 Created (ORD-TALHA-001, status: paid)
+        API-->>Customer: HTTP 201 Created (ORD-TALHA-001, status: paid)
     end
 
     %% -------------------------------------------------------------------------
@@ -269,19 +269,19 @@ sequenceDiagram
     rect rgb(254, 242, 242)
         Note over Customer, Gateway: PART 2: CONCURRENCY RACE CONDITION DEFENSE (Last 1 Unit in Stock)
 
-        Note over Customer, DB: Thread A (Talha) and Thread B (Alice) hit checkout at exact same millisecond
-        API->>+DB: Thread A: SELECT * FROM products_product WHERE id = 5 FOR UPDATE
-        DB-->>-API: Thread A acquires Row Lock (stock = 1)
+        Customer->>API: Thread A and Thread B POST /api/cart/checkout/ simultaneously
+        API->>DB: Thread A: SELECT * FROM products_product WHERE id = 5 FOR UPDATE
+        DB-->>API: Thread A acquires Row Lock (stock = 1)
         Note over DB: Thread B waits for Thread A lock to release
         
-        API->>+DB: Thread A: UPDATE products_product SET stock = 0 WHERE id = 5
-        DB-->>-API: Thread A commits and releases Row Lock
+        API->>DB: Thread A: UPDATE products_product SET stock = 0 WHERE id = 5
+        DB-->>API: Thread A commits and releases Row Lock
         
         Note over DB: Thread B lock acquired, inspects stock
-        API->>+DB: Thread B: SELECT * FROM products_product WHERE id = 5
-        DB-->>-API: Locked Product Record (stock = 0)
+        API->>DB: Thread B: SELECT * FROM products_product WHERE id = 5
+        DB-->>API: Locked Product Record (stock = 0)
         Note over API: Validation: product stock (0) is below requested (1)
-        API-->>-Customer: HTTP 409 Conflict (Insufficient stock for requested item)
+        API-->>Customer: HTTP 409 Conflict (Insufficient stock for requested item)
         Note over DB: Database CHECK (stock >= 0) constraint guarantees ZERO negative inventory!
     end
 
@@ -291,12 +291,12 @@ sequenceDiagram
     rect rgb(255, 251, 235)
         Note over Customer, Gateway: PART 3: PAYMENT DECLINE WORKFLOW (tok_decline)
 
-        Customer->>+API: POST /api/cart/checkout/ (payment_token: tok_decline)
-        API->>+Gateway: process_payment(token = tok_decline)
-        Gateway-->>-API: PaymentTransaction(status = declined, message = Card Declined)
+        Customer->>API: POST /api/cart/checkout/ (payment_token: tok_decline)
+        API->>Gateway: process_payment(token = tok_decline)
+        Gateway-->>API: PaymentTransaction(status = declined, message = Card Declined)
         Note over API, DB: ROLLBACK transaction.atomic()
         Note over API: Zero stock deducted! Cart items preserved!
-        API-->>-Customer: HTTP 400 Bad Request (Payment declined by card issuer, stock and cart intact)
+        API-->>Customer: HTTP 400 Bad Request (Payment declined by card issuer, stock and cart intact)
     end
 
     %% -------------------------------------------------------------------------
@@ -305,24 +305,24 @@ sequenceDiagram
     rect rgb(238, 242, 255)
         Note over Admin, DB: PART 4: ORDER FSM LIFECYCLE AND TERMINAL STATES
         
-        Admin->>+API: PATCH /api/orders/101/update_status/ (status: processing)
-        API->>+DB: UPDATE orders_order SET status = processing WHERE id = 101
-        DB-->>-API: Status Updated
+        Admin->>API: PATCH /api/orders/101/update_status/ (status: processing)
+        API->>DB: UPDATE orders_order SET status = processing WHERE id = 101
+        DB-->>API: Status Updated
         API-->>Admin: HTTP 200 OK (Order transitioned to PROCESSING)
         
-        Admin->>+API: PATCH /api/orders/101/update_status/ (status: shipped)
-        API->>+DB: UPDATE orders_order SET status = shipped WHERE id = 101
-        DB-->>-API: Status Updated
+        Admin->>API: PATCH /api/orders/101/update_status/ (status: shipped)
+        API->>DB: UPDATE orders_order SET status = shipped WHERE id = 101
+        DB-->>API: Status Updated
         API-->>Admin: HTTP 200 OK (Order transitioned to SHIPPED)
         
-        Admin->>+API: PATCH /api/orders/101/update_status/ (status: delivered)
-        API->>+DB: UPDATE orders_order SET status = delivered WHERE id = 101
-        DB-->>-API: Status Updated (Terminal State Lock Engaged)
+        Admin->>API: PATCH /api/orders/101/update_status/ (status: delivered)
+        API->>DB: UPDATE orders_order SET status = delivered WHERE id = 101
+        DB-->>API: Status Updated (Terminal State Lock Engaged)
         API-->>Admin: HTTP 200 OK (Order transitioned to DELIVERED)
 
         Note over Admin, API: Attempting illegal transition from Terminal State
-        Admin->>+API: PATCH /api/orders/101/update_status/ (status: processing)
+        Admin->>API: PATCH /api/orders/101/update_status/ (status: processing)
         Note over API: FSM Validation: delivered is an immutable terminal state!
-        API-->>-Admin: HTTP 400 Bad Request (Invalid status transition, delivered orders are immutable)
+        API-->>Admin: HTTP 400 Bad Request (Invalid status transition, delivered orders are immutable)
     end
 ```
