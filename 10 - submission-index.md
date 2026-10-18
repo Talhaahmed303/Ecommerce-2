@@ -5,7 +5,8 @@
 **Deliverable Number:** 10 of 10  
 **Specification Reference:** Weekend Assignment.pdf §3  
 **Status:** 100% Complete & Verified  
-**Live Editable Lucidchart Architecture:** [Lucidchart Workspace Link](https://lucid.app/lucidchart/6ef90429-d6a5-4585-8b7f-2caaf728b0fc/edit?invitationId=inv_9b2b97cf-501b-429e-993d-a24c927fa54c&page=yofE0ycUHjJN#)
+**Live Editable Architecture:** [Open Architecture in Lucidchart](https://lucid.app/lucidchart/6ef90429-d6a5-4585-8b7f-2caaf728b0fc/edit?viewport_loc=-5287%2C321%2C16525%2C6279%2C0_0&invitationId=inv_9b2b97cf-501b-429e-993d-a24c927fa54c)  
+**Live Editable Database ERD:** [Open Database ERD in Lucidchart](https://lucid.app/lucidchart/fc2bb308-385a-44aa-8eec-6b89b42e11a7/edit?viewport_loc=-1034%2C-301%2C5760%2C2794%2C0_0&invitationId=inv_617b723e-1db7-444f-9378-4db505be3b4b)
 
 ---
 
@@ -34,8 +35,8 @@
 | Deliverable Name | File Type | File Path | Status | Verification Check |
 | :--- | :--- | :--- | :--- | :--- |
 | **01 - README.md** | Markdown | `02_Ecommerce/01 - README.md` | COMPLETE | Setup commands, roles, and architecture verified |
-| **02 - architecture.pdf** | Vector PDF | `02_Ecommerce/02 - architecture.pdf` | COMPLETE | 3-tier diagram + genuine Lucidchart link |
-| **03 - database-design.pdf** | Vector PDF | `02_Ecommerce/03 - database-design.pdf` | COMPLETE | Relational ERD, check constraints, indexes |
+| **02 - architecture.pdf** | Vector PDF | `02_Ecommerce/02 - architecture.pdf` | COMPLETE | [Open Architecture in Lucidchart](https://lucid.app/lucidchart/6ef90429-d6a5-4585-8b7f-2caaf728b0fc/edit?viewport_loc=-5287%2C321%2C16525%2C6279%2C0_0&invitationId=inv_9b2b97cf-501b-429e-993d-a24c927fa54c) |
+| **03 - database-design.pdf** | Vector PDF | `02_Ecommerce/03 - database-design.pdf` | COMPLETE | [Open Database ERD in Lucidchart](https://lucid.app/lucidchart/fc2bb308-385a-44aa-8eec-6b89b42e11a7/edit?viewport_loc=-1034%2C-301%2C5760%2C2794%2C0_0&invitationId=inv_617b723e-1db7-444f-9378-4db505be3b4b) |
 | **04 - api-workflows.pdf** | Vector PDF | `02_Ecommerce/04 - api-workflows.pdf` | COMPLETE | Sequence diagrams of atomic checkout, rollback & FSM |
 | **05 - test-cases.xlsx** | Formatted Excel | `02_Ecommerce/05 - test-cases.xlsx` | COMPLETE | 15 real test records matching `test_ecommerce_api.py` |
 | **06 - engineering-decisions.md** | Markdown | `02_Ecommerce/06 - engineering-decisions.md` | COMPLETE | 8 deep architectural decisions & trade-offs |

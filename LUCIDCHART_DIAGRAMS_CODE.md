@@ -1,7 +1,8 @@
 # FALCONXOFT WEEKEND 1 — PROJECT 02 (E-COMMERCE) LUCIDCHART DIAGRAM CODES
 
 **Author:** Talha Ahmed  
-**Live Editable Lucidchart Link:** [https://lucid.app/lucidchart/6ef90429-d6a5-4585-8b7f-2caaf728b0fc/edit?invitationId=inv_9b2b97cf-501b-429e-993d-a24c927fa54c&page=yofE0ycUHjJN#](https://lucid.app/lucidchart/6ef90429-d6a5-4585-8b7f-2caaf728b0fc/edit?invitationId=inv_9b2b97cf-501b-429e-993d-a24c927fa54c&page=yofE0ycUHjJN#)
+**Live Editable Architecture:** [Open Architecture in Lucidchart](https://lucid.app/lucidchart/6ef90429-d6a5-4585-8b7f-2caaf728b0fc/edit?viewport_loc=-5287%2C321%2C16525%2C6279%2C0_0&invitationId=inv_9b2b97cf-501b-429e-993d-a24c927fa54c)  
+**Live Editable Database ERD:** [Open Database ERD in Lucidchart](https://lucid.app/lucidchart/fc2bb308-385a-44aa-8eec-6b89b42e11a7/edit?viewport_loc=-1034%2C-301%2C5760%2C2794%2C0_0&invitationId=inv_617b723e-1db7-444f-9378-4db505be3b4b)
 
 This document contains the exact, up-to-date Mermaid and SQL definitions for all 3 required diagrams in Project 02. You can directly copy these codes and import them into Lucidchart via **File ➔ Import Data ➔ Mermaid** or paste them into any Markdown viewer.
 

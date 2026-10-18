@@ -7,7 +7,8 @@
 **Implementation Status:** 100% Implemented, Seeded, Tested, and Verified  
 **Active Backend Port:** `http://127.0.0.1:8002`  
 **Active Frontend Port:** `http://127.0.0.1:3002`  
-**Live Editable Lucidchart Architecture:** [Lucidchart Workspace Link](https://lucid.app/lucidchart/6ef90429-d6a5-4585-8b7f-2caaf728b0fc/edit?invitationId=inv_9b2b97cf-501b-429e-993d-a24c927fa54c&page=yofE0ycUHjJN#)
+**Live Editable Architecture:** [Open Architecture in Lucidchart](https://lucid.app/lucidchart/6ef90429-d6a5-4585-8b7f-2caaf728b0fc/edit?viewport_loc=-5287%2C321%2C16525%2C6279%2C0_0&invitationId=inv_9b2b97cf-501b-429e-993d-a24c927fa54c)  
+**Live Editable Database ERD:** [Open Database ERD in Lucidchart](https://lucid.app/lucidchart/fc2bb308-385a-44aa-8eec-6b89b42e11a7/edit?viewport_loc=-1034%2C-301%2C5760%2C2794%2C0_0&invitationId=inv_617b723e-1db7-444f-9378-4db505be3b4b)
 
 ---
 
@@ -73,7 +74,37 @@ Project 02 delivers a **production-grade, high-integrity E-Commerce Store (NovaM
 
 ---
 
-## 4. Quick Start & Execution Guide
+## 4. Visual Architecture & Database ERD Diagrams
+
+All diagrams required by the FalconXoft evaluation specification have been exported and provided in multiple formats for maximum defensibility. Clicking any preview diagram below will open the **live, editable Lucidchart workspace**:
+
+### 4.1 System Architecture Diagram
+[![System Architecture Diagram](lucidchart_diagrams/01_architecture_preview.png)](https://lucid.app/lucidchart/6ef90429-d6a5-4585-8b7f-2caaf728b0fc/edit?viewport_loc=-5287%2C321%2C16525%2C6279%2C0_0&invitationId=inv_9b2b97cf-501b-429e-993d-a24c927fa54c)
+- **Vector PDF Deliverable:** [`02 - architecture.pdf`](02%20-%20architecture.pdf)
+- **High-Res PNG Deliverable:** [`02 - architecture.png`](02%20-%20architecture.png)
+- **Live Editable Lucidchart URL:** [Open Architecture in Lucidchart](https://lucid.app/lucidchart/6ef90429-d6a5-4585-8b7f-2caaf728b0fc/edit?viewport_loc=-5287%2C321%2C16525%2C6279%2C0_0&invitationId=inv_9b2b97cf-501b-429e-993d-a24c927fa54c)
+- **Mermaid Source Backup:** [`lucidchart_diagrams/01_ARCHITECTURE_DIAGRAM.mermaid`](lucidchart_diagrams/01_ARCHITECTURE_DIAGRAM.mermaid)
+
+---
+
+### 4.2 Database ERD & Relational Schema
+[![Database ERD Diagram](lucidchart_diagrams/02_database_erd_preview.png)](https://lucid.app/lucidchart/fc2bb308-385a-44aa-8eec-6b89b42e11a7/edit?viewport_loc=-1034%2C-301%2C5760%2C2794%2C0_0&invitationId=inv_617b723e-1db7-444f-9378-4db505be3b4b)
+- **Vector PDF Deliverable:** [`03 - database-design.pdf`](03%20-%20database-design.pdf)
+- **High-Res PNG Deliverable:** [`03 - database-design.png`](03%20-%20database-design.png)
+- **Live Editable Lucidchart ERD URL:** [Open Database ERD in Lucidchart](https://lucid.app/lucidchart/fc2bb308-385a-44aa-8eec-6b89b42e11a7/edit?viewport_loc=-1034%2C-301%2C5760%2C2794%2C0_0&invitationId=inv_617b723e-1db7-444f-9378-4db505be3b4b)
+- **PostgreSQL 1-Click DDL:** [`schema.sql`](schema.sql) & [`lucidchart_diagrams/02_DATABASE_ERD.sql`](lucidchart_diagrams/02_DATABASE_ERD.sql)
+- **Mermaid Source Backup:** [`lucidchart_diagrams/02_DATABASE_ERD.mermaid`](lucidchart_diagrams/02_DATABASE_ERD.mermaid)
+
+---
+
+### 4.3 API Workflows & Sequence Workflows
+- **Vector PDF Deliverable:** [`04 - api-workflows.pdf`](04%20-%20api-workflows.pdf)
+- **Complete OpenAPI 3.0 Contract:** [`openapi.yaml`](openapi.yaml)
+- **Mermaid Source Backup:** [`lucidchart_diagrams/03_API_WORKFLOWS_SEQUENCE.mermaid`](lucidchart_diagrams/03_API_WORKFLOWS_SEQUENCE.mermaid)
+
+---
+
+## 5. Quick Start & Execution Guide
 
 ### Prerequisites
 - Python 3.11+
@@ -110,7 +141,7 @@ Frontend will be live at `http://127.0.0.1:3002/`.
 
 ---
 
-## 5. Seed Credentials & User Personas
+## 6. Seed Credentials & User Personas
 
 | Username | Password | Role | Pre-Seeded State & Testing Purpose |
 | :--- | :--- | :--- | :--- |
@@ -122,7 +153,7 @@ Frontend will be live at `http://127.0.0.1:3002/`.
 
 ---
 
-## 6. Automated Test Suite Verification
+## 7. Automated Test Suite Verification
 
 Run the comprehensive pytest suite verifying authentication, stock validation, checkout atomicity, race condition prevention, order isolation, and PostgreSQL check constraints:
 
@@ -139,7 +170,7 @@ pytest tests/test_ecommerce_api.py -v
 
 ---
 
-## 7. Deliverables Index
+## 8. Deliverables Index
 
 Per Weekend Assignment §3, all 10 standard deliverables are provided:
 1. `01 - README.md` — Project overview and setup instructions (this file)
