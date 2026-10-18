@@ -1,0 +1,91 @@
+%% =============================================================================
+%% FALCONXOFT INTERN EVALUATION — PROJECT 02: HIGH-INTEGRITY E-COMMERCE STORE
+%% Entity Relationship Diagram (ERD) (Lucidchart / Mermaid Compatible)
+%% Candidate: Talha Ahmed | Date: October 2026
+%% Lucidchart Link: https://lucid.app/lucidchart/6ef90429-d6a5-4585-8b7f-2caaf728b0fc/edit?invitationId=inv_9b2b97cf-501b-429e-993d-a24c927fa54c&page=yofE0ycUHjJN#
+%% =============================================================================
+
+erDiagram
+    USERS_CUSTOMUSER {
+        bigserial id PK "Primary Key"
+        varchar username UK "Unique Username (150)"
+        varchar email UK "Email Address (254)"
+        varchar role "Role: 'customer' or 'admin'"
+        varchar phone "Phone Number"
+        text address "Shipping Address"
+        boolean is_active "Active Status"
+        timestamptz date_joined "Registration Date"
+    }
+
+    PRODUCTS_PRODUCT {
+        bigserial id PK "Primary Key"
+        varchar title "Product Name (255)"
+        varchar slug UK "URL Slug (300)"
+        numeric price "Unit Price (price >= 0)"
+        int stock "Available Inventory (CHECK stock >= 0)"
+        varchar sku UK "Stock Keeping Unit"
+        varchar category "Category Classification"
+        text description "Full Product Specifications"
+        varchar image_url "Product Image URL"
+        boolean is_active "Active Status"
+        timestamptz created_at "Created Date"
+    }
+
+    CART_CART {
+        bigserial id PK "Primary Key"
+        bigint user_id FK "References USERS_CUSTOMUSER.id (UNIQUE)"
+        varchar session_key "Guest Session Identifier"
+        timestamptz created_at "Created Timestamp"
+        timestamptz updated_at "Last Modified"
+    }
+
+    CART_CARTITEM {
+        bigserial id PK "Primary Key"
+        bigint cart_id FK "References CART_CART.id (CASCADE)"
+        bigint product_id FK "References PRODUCTS_PRODUCT.id (CASCADE)"
+        int quantity "Line Item Quantity (> 0)"
+        timestamptz added_at "Timestamp"
+    }
+
+    PAYMENTS_PAYMENTTRANSACTION {
+        bigserial id PK "Primary Key"
+        varchar idempotency_key UK "Unique Idempotency Key"
+        bigint user_id FK "References USERS_CUSTOMUSER.id"
+        numeric amount "Transaction Amount"
+        varchar payment_token "Token (tok_success/tok_decline)"
+        varchar status "Status (success/declined/error)"
+        varchar gateway_message "Gateway Response Message"
+        timestamptz created_at "Timestamp"
+    }
+
+    ORDERS_ORDER {
+        bigserial id PK "Primary Key"
+        varchar order_number UK "Unique Order Number (ORD-...)"
+        bigint user_id FK "References USERS_CUSTOMUSER.id (CASCADE)"
+        numeric total_amount "Total Billed Amount"
+        varchar status "pending|paid|processing|shipped|delivered|cancelled"
+        text shipping_address "Shipping Address Destination"
+        bigint payment_transaction_id FK "References PAYMENTTRANSACTION.id"
+        timestamptz created_at "Order Timestamp"
+        timestamptz updated_at "Last Status Update"
+    }
+
+    ORDERS_ORDERITEM {
+        bigserial id PK "Primary Key"
+        bigint order_id FK "References ORDERS_ORDER.id (CASCADE)"
+        bigint product_id FK "References PRODUCTS_PRODUCT.id (SET NULL)"
+        varchar product_title "Historical Product Title"
+        numeric unit_price "Frozen Price Snapshot"
+        int quantity "Billed Quantity"
+        numeric subtotal "Line Total"
+    }
+
+    %% Relationships & Cardinalities
+    USERS_CUSTOMUSER ||--o| CART_CART : "owns (1:1)"
+    CART_CART ||--o{ CART_CARTITEM : "contains (1:N)"
+    PRODUCTS_PRODUCT ||--o{ CART_CARTITEM : "referenced_in (1:N)"
+    USERS_CUSTOMUSER ||--o{ ORDERS_ORDER : "places (1:N)"
+    ORDERS_ORDER ||--o{ ORDERS_ORDERITEM : "itemized_in (1:N)"
+    PRODUCTS_PRODUCT ||--o{ ORDERS_ORDERITEM : "historical_reference (1:N)"
+    PAYMENTS_PAYMENTTRANSACTION ||--o| ORDERS_ORDER : "settles (1:1)"
+    USERS_CUSTOMUSER ||--o{ PAYMENTS_PAYMENTTRANSACTION : "executes (1:N)"
