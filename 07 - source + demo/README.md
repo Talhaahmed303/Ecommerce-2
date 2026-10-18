@@ -55,7 +55,7 @@ d:\Weekend1_Talha Ahmed\02_Ecommerce\
 - **Backend Entrypoint:** `02_Ecommerce/backend/manage.py` (Port 8002)
 - **Frontend Entrypoint:** `02_Ecommerce/frontend/src/app/page.tsx` (Port 3002)
 - **Git Branch:** `main`
-- **GitHub Repository Link (Submission):** `https://github.com/talhaahmed303/weekend1-ecommerce-store` *(configured for evaluation review)*
+- **GitHub Repository Link (Submission):** [https://github.com/Talhaahmed303/Ecommerce-2](https://github.com/Talhaahmed303/Ecommerce-2) *(configured for evaluation review)*
 - **Demo Recording Link:** `https://drive.google.com/file/d/falconxoft-demo-02-ecommerce-talha/view` *(accessible to HR and Junior 1/2 reviewer)*
 
 ---
