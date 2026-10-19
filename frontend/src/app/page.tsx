@@ -345,10 +345,22 @@ export default function Storefront() {
               NM
             </div>
             <div>
-              <span className="font-extrabold tracking-tight text-lg text-white">NovaMart</span>
-              <span className="ml-2 text-xs uppercase px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold">
-                Store
-              </span>
+              <div className="flex items-center space-x-2">
+                <span className="font-extrabold tracking-tight text-lg text-white">NovaMart</span>
+                <span className="text-xs uppercase px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold">
+                  Store
+                </span>
+                <a
+                  href="https://drive.google.com/file/d/188jZ0az2y0jtlESSNeMaqs3rUR2J5Tqg/view?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hidden md:inline-flex items-center space-x-1 text-xs bg-red-600/90 hover:bg-red-500 text-white px-2.5 py-0.5 rounded-full font-bold shadow transition transform hover:scale-105"
+                  title="Watch 3-5 Minute Demo Video Walkthrough"
+                >
+                  <span>▶️</span>
+                  <span>Demo Video</span>
+                </a>
+              </div>
             </div>
           </div>
 
@@ -511,6 +523,16 @@ export default function Storefront() {
           </div>
 
           <div className="flex flex-wrap items-center gap-2 shrink-0">
+            <a
+              href="https://drive.google.com/file/d/188jZ0az2y0jtlESSNeMaqs3rUR2J5Tqg/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3 py-1.5 rounded-lg text-xs font-bold bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white transition flex items-center gap-1.5 shadow-md transform hover:scale-105"
+              title="Watch 3-5 Minute Demo Video Walkthrough"
+            >
+              <span>▶️</span>
+              <span>Watch Demo Video</span>
+            </a>
             {currentUser ? (
               <>
                 {activeTab === 'orders' ? (

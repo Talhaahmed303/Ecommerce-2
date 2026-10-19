@@ -42,7 +42,7 @@
 | **04 - api-workflows.pdf** | Vector PDF | `02_Ecommerce/04 - api-workflows.pdf` | COMPLETE | [Open API Workflows in Lucidchart](https://lucid.app/lucidchart/1b0fe96e-3252-44ce-9d28-8ed2cf93e7d8/edit?view_items=vrvEd8gjuvU3&page=0_0&invitationId=inv_0f45dbed-0cf2-4c23-a75d-971f8607c2c5) |
 | **05 - test-cases.xlsx** | Formatted Excel | `02_Ecommerce/05 - test-cases.xlsx` | COMPLETE | 15 real test records matching `test_ecommerce_api.py` |
 | **06 - engineering-decisions.md** | Markdown | `02_Ecommerce/06 - engineering-decisions.md` | COMPLETE | 8 deep architectural decisions & trade-offs |
-| **07 - source + demo/** | Directory | `02_Ecommerce/07 - source + demo/README.md` | COMPLETE | [GitHub: Talhaahmed303/Ecommerce-2](https://github.com/Talhaahmed303/Ecommerce-2) |
+| **07 - source + demo/** | Directory | `02_Ecommerce/07 - source + demo/README.md` | COMPLETE | [GitHub: Talhaahmed303/Ecommerce-2](https://github.com/Talhaahmed303/Ecommerce-2) + [3–5 Min Demo Video](https://drive.google.com/file/d/188jZ0az2y0jtlESSNeMaqs3rUR2J5Tqg/view?usp=sharing) |
 | **08 - cost-and-scaling.xlsx** | Formatted Excel | `02_Ecommerce/08 - cost-and-scaling.xlsx` | COMPLETE | Hostinger VPS vs AWS + 100 to 1M user models |
 | **09 - sources-and-disclosure.md** | Markdown | `02_Ecommerce/09 - sources-and-disclosure.md` | COMPLETE | Honest citations & AI assistance statement |
 | **10 - submission-index.md** | Markdown | `02_Ecommerce/10 - submission-index.md` | COMPLETE | Traceability matrix and file inventory (this file) |

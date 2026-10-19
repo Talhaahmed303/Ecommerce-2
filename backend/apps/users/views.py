@@ -16,6 +16,8 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         return token
 
     def validate(self, attrs):
+        if 'username' in attrs and isinstance(attrs['username'], str):
+            attrs['username'] = attrs['username'].strip()
         data = super().validate(attrs)
         data['user'] = UserSerializer(self.user).data
         return data

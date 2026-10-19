@@ -56,7 +56,7 @@ d:\Weekend1_Talha Ahmed\02_Ecommerce\
 - **Frontend Entrypoint:** `02_Ecommerce/frontend/src/app/page.tsx` (Port 3002)
 - **Git Branch:** `main`
 - **GitHub Repository Link (Submission):** [https://github.com/Talhaahmed303/Ecommerce-2](https://github.com/Talhaahmed303/Ecommerce-2) *(configured for evaluation review)*
-- **Demo Recording Link:** `https://drive.google.com/file/d/falconxoft-demo-02-ecommerce-talha/view` *(accessible to HR and Junior 1/2 reviewer)*
+- **Demo Recording Link:** [Watch E-Commerce Store Demo Video](https://drive.google.com/file/d/188jZ0az2y0jtlESSNeMaqs3rUR2J5Tqg/view?usp=sharing) *(accessible to HR and Junior 1/2 reviewer)*
 
 ---
 
