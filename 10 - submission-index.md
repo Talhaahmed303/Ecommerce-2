@@ -46,8 +46,6 @@
 | **08 - cost-and-scaling.xlsx** | Formatted Excel | `02_Ecommerce/08 - cost-and-scaling.xlsx` | COMPLETE | Hostinger VPS vs AWS + 100 to 1M user models |
 | **09 - sources-and-disclosure.md** | Markdown | `02_Ecommerce/09 - sources-and-disclosure.md` | COMPLETE | Honest citations & AI assistance statement |
 | **10 - submission-index.md** | Markdown | `02_Ecommerce/10 - submission-index.md` | COMPLETE | Traceability matrix and file inventory (this file) |
-| **LUCIDCHART_DIAGRAMS_CODE.md** | Markdown | `02_Ecommerce/LUCIDCHART_DIAGRAMS_CODE.md` | COMPLETE | Raw Mermaid & SQL diagram definitions for 1-click import |
-| **ECOMMERCE_TESTING_AND_VIVA_GUIDE.md** | Markdown | `02_Ecommerce/ECOMMERCE_TESTING_AND_VIVA_GUIDE.md` | COMPLETE | Detailed viva presentation and oral defense walkthrough |
 | **OpenAPI Contract** | YAML | `02_Ecommerce/openapi.yaml` | COMPLETE | OpenAPI 3.0 schema generated via drf-spectacular |
 | **Database Schema** | SQL | `02_Ecommerce/schema.sql` | COMPLETE | DDL tables, foreign keys, and check constraints |
 | **Environment Config** | Text | `02_Ecommerce/.env.example` | COMPLETE | Safe, uncommitted environment configuration template |
